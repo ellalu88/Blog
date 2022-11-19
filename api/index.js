@@ -1,14 +1,20 @@
+// create express server
 const express= require("express");
 const app=express();
+//env config
 const dotenv=require("dotenv");
+//create mongoose
 const mongoose=require("mongoose")
+//create ruotes
 const authRoute=require("./routes/auth");
 const userRoute=require("./routes/users");
 const postRoute=require("./routes/posts");
 const categoryRoute=require("./routes/categories");
 const multer=require("multer")
 
+
 dotenv.config();
+// can send any json file, json object
 app.use(express.json());
 
 mongoose
@@ -25,7 +31,6 @@ const storage=multer.diskStorage({
     cb(null,"images");
   },
   filename:(req,file,cb)=>{
-    // cb(null,"hello.jpeg");
     cb(null,req.body.name);
   }
 })
